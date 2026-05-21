@@ -9,10 +9,12 @@ Text Domain: gardafrigo-cawipa
 */
 
 :root {
-  --gf-navy: #123047;
-  --gf-cyan: #1fa9c8;
-  --gf-green: #78b943;
-  --gf-ice: #eef8fb;
+  --gf-navy: #1f4f92;
+  --gf-blue: #3f87c8;
+  --gf-cyan: #7cc9df;
+  --gf-orange: #f58220;
+  --gf-yellow: #f6d51f;
+  --gf-ice: #eef9fd;
   --gf-ink: #17212b;
 }
 
@@ -32,7 +34,7 @@ body {
 
 .gf-brand-symbol {
   align-items: center;
-  background: linear-gradient(135deg, var(--gf-cyan), var(--gf-green));
+  background: linear-gradient(135deg, var(--gf-blue), var(--gf-cyan) 48%, var(--gf-orange));
   border-radius: 6px;
   color: #fff;
   display: inline-flex;
@@ -44,7 +46,7 @@ body {
 }
 
 .gf-kicker {
-  color: var(--gf-cyan);
+  color: var(--gf-blue);
   font-size: 0.82rem;
   font-weight: 700;
   letter-spacing: 0.08em;
@@ -74,4 +76,10 @@ body {
   background: var(--gf-navy);
   color: #fff;
   padding: 2rem;
+}
+
+.fusion-logo img,
+.fusion-mobile-logo img {
+  max-height: 82px;
+  width: auto;
 }
