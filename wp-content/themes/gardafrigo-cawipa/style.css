@@ -1,0 +1,77 @@
+/*
+Theme Name: Garda Frigor Cawipa
+Theme URI: https://github.com/elis-anna/gardafrigo
+Description: Tema child Avada per Garda Frigor, brandizzato Cawipa Elise. Il progetto riposiziona i contenuti storici gardafrigor.it nel prebuilt Avada Energy, organizzando condizionamento, riscaldamento, trattamento aria e refrigerazione come solutions.
+Author: Cawipa Elise
+Template: Avada
+Version: 0.1.0
+Text Domain: gardafrigo-cawipa
+*/
+
+:root {
+  --gf-navy: #123047;
+  --gf-cyan: #1fa9c8;
+  --gf-green: #78b943;
+  --gf-ice: #eef8fb;
+  --gf-ink: #17212b;
+}
+
+body {
+  color: var(--gf-ink);
+}
+
+.gf-brand-mark {
+  align-items: center;
+  color: var(--gf-navy);
+  display: inline-flex;
+  font-weight: 800;
+  gap: 0.65rem;
+  letter-spacing: 0;
+  text-decoration: none;
+}
+
+.gf-brand-symbol {
+  align-items: center;
+  background: linear-gradient(135deg, var(--gf-cyan), var(--gf-green));
+  border-radius: 6px;
+  color: #fff;
+  display: inline-flex;
+  font-size: 0.85rem;
+  height: 2.4rem;
+  justify-content: center;
+  line-height: 1;
+  width: 2.4rem;
+}
+
+.gf-kicker {
+  color: var(--gf-cyan);
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.gf-solution-grid {
+  display: grid;
+  gap: 1.25rem;
+  grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+  margin: 2rem 0;
+}
+
+.gf-solution-card {
+  background: #fff;
+  border: 1px solid rgba(18, 48, 71, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 12px 28px rgba(18, 48, 71, 0.08);
+  padding: 1.35rem;
+}
+
+.gf-solution-card h3 {
+  margin-top: 0;
+}
+
+.gf-cta-band {
+  background: var(--gf-navy);
+  color: #fff;
+  padding: 2rem;
+}
