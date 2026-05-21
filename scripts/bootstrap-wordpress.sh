@@ -32,6 +32,16 @@ fi
 
 if [ -f avada-packages/Avada.zip ]; then
   docker compose run --rm wpcli wp theme install /avada-packages/Avada.zip --force
+  if [ -n "${AVADA_LICENSE_KEY:-}" ]; then
+    if docker compose run --rm wpcli sh -lc 'wp fusion register --purchase_code="$AVADA_LICENSE_KEY"'; then
+      docker compose run --rm wpcli sh -lc 'wp plugin install "$(wp fusion plugin url Avada-Core)" --activate --force'
+      docker compose run --rm wpcli sh -lc 'wp plugin install "$(wp fusion plugin url Avada-Builder)" --activate --force'
+    else
+      echo "Registrazione Avada non riuscita. Verifica il purchase code ThemeForest in .env."
+    fi
+  else
+    echo "AVADA_LICENSE_KEY non presente in .env. Salto registrazione e plugin Avada."
+  fi
 else
   echo "Avada.zip non presente in avada-packages/. Salto installazione parent theme."
 fi
