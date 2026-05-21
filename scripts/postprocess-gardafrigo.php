@@ -19,7 +19,10 @@ $page_map = [
     2206 => ['Trattamento aria', 'trattamento-aria', 2203],
     2205 => ['Refrigerazione', 'refrigerazione', 2203],
     2204 => ['Chi siamo', 'chi-siamo', 0],
+    6 => ['Servizi', 'servizi', 0],
+    7 => ['Marchi', 'marchi', 0],
     60 => ['Case history', 'case-history', 0],
+    9 => ['News', 'news', 0],
     607 => ['Contatti', 'contatti', 0],
 ];
 
@@ -35,7 +38,7 @@ foreach ($page_map as $id => [$title, $slug, $parent]) {
     }
 }
 
-foreach ([4, 5, 6, 7, 8, 9, 10, 2] as $legacy_id) {
+foreach ([4, 5, 8, 10, 2] as $legacy_id) {
     $legacy = get_post($legacy_id);
     if ($legacy) {
         wp_update_post([
@@ -128,51 +131,33 @@ foreach ($solution_copy as $id => $excerpt) {
     ]);
 }
 
-$menu_name = 'Garda Frigor Main';
-$menu = wp_get_nav_menu_object($menu_name);
-$menu_id = $menu ? (int) $menu->term_id : wp_create_nav_menu($menu_name);
+$main_menu_pages = [768, 2204, 6, 7, 60, 9, 607];
 
-$items = wp_get_nav_menu_items($menu_id) ?: [];
-foreach ($items as $item) {
-    wp_delete_post($item->ID, true);
-}
+$build_gardafrigo_menu = function (string $menu_name) use ($main_menu_pages): int {
+    $menu = wp_get_nav_menu_object($menu_name);
+    $menu_id = $menu ? (int) $menu->term_id : wp_create_nav_menu($menu_name);
 
-$home_item = wp_update_nav_menu_item($menu_id, 0, [
-    'menu-item-title' => 'Home',
-    'menu-item-object' => 'page',
-    'menu-item-object-id' => 768,
-    'menu-item-type' => 'post_type',
-    'menu-item-status' => 'publish',
-]);
+    $items = wp_get_nav_menu_items($menu_id) ?: [];
+    foreach ($items as $item) {
+        wp_delete_post($item->ID, true);
+    }
 
-$solutions_item = wp_update_nav_menu_item($menu_id, 0, [
-    'menu-item-title' => 'Solutions',
-    'menu-item-object' => 'page',
-    'menu-item-object-id' => 2203,
-    'menu-item-type' => 'post_type',
-    'menu-item-status' => 'publish',
-]);
+    foreach ($main_menu_pages as $page_id) {
+        wp_update_nav_menu_item($menu_id, 0, [
+            'menu-item-title' => get_the_title($page_id),
+            'menu-item-object' => 'page',
+            'menu-item-object-id' => $page_id,
+            'menu-item-type' => 'post_type',
+            'menu-item-status' => 'publish',
+        ]);
+    }
 
-foreach ([2208, 2207, 2206, 2205] as $solution_id) {
-    wp_update_nav_menu_item($menu_id, 0, [
-        'menu-item-title' => get_the_title($solution_id),
-        'menu-item-object' => 'page',
-        'menu-item-object-id' => $solution_id,
-        'menu-item-type' => 'post_type',
-        'menu-item-status' => 'publish',
-        'menu-item-parent-id' => $solutions_item,
-    ]);
-}
+    return $menu_id;
+};
 
-foreach ([2204, 60, 607] as $page_id) {
-    wp_update_nav_menu_item($menu_id, 0, [
-        'menu-item-title' => get_the_title($page_id),
-        'menu-item-object' => 'page',
-        'menu-item-object-id' => $page_id,
-        'menu-item-type' => 'post_type',
-        'menu-item-status' => 'publish',
-    ]);
-}
+$menu_id = $build_gardafrigo_menu('Garda Frigor Main');
+$build_gardafrigo_menu('Energy Main Menu');
+$build_gardafrigo_menu('Energy Mobile Menu');
 
 set_theme_mod('nav_menu_locations', [
     'main_navigation' => $menu_id,
