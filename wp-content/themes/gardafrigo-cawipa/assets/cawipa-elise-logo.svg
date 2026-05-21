@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="360" height="72" viewBox="0 0 360 72" role="img" aria-labelledby="title desc">
+  <title id="title">Cawipa Elise - Garda Frigor</title>
+  <desc id="desc">Logo for the Garda Frigor WordPress theme branded by Cawipa Elise.</desc>
+  <rect width="72" height="72" rx="12" fill="#123047"/>
+  <path d="M21 48c8-18 18-26 34-26" fill="none" stroke="#1fa9c8" stroke-width="7" stroke-linecap="round"/>
+  <path d="M24 49c12 1 23-5 32-18" fill="none" stroke="#78b943" stroke-width="7" stroke-linecap="round"/>
+  <text x="92" y="32" font-family="Arial, Helvetica, sans-serif" font-size="22" font-weight="700" fill="#123047">Cawipa Elise</text>
+  <text x="92" y="56" font-family="Arial, Helvetica, sans-serif" font-size="20" font-weight="700" fill="#1fa9c8">Garda Frigor</text>
+</svg>

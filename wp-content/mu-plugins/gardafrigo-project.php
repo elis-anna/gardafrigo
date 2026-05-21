@@ -16,7 +16,7 @@ add_action('init', function () {
         'public' => true,
         'has_archive' => true,
         'menu_icon' => 'dashicons-admin-tools',
-        'rewrite' => ['slug' => 'solutions'],
+        'rewrite' => ['slug' => 'solution-items'],
         'supports' => ['title', 'editor', 'excerpt', 'thumbnail', 'page-attributes'],
         'show_in_rest' => true,
     ]);

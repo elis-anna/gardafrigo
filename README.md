@@ -30,3 +30,14 @@ La prima ricognizione del sito live e' in `docs/content-migration.md`. Le quattr
 - Refrigerazione
 
 La migrazione completa dei contenuti verra' fatta dopo l'import del prebuilt Avada Energy, cosi' possiamo sostituire testi e immagini direttamente nel layout definitivo.
+
+## Script Avada
+
+Quando Avada e' registrato e i plugin Avada Core/Builder sono attivi:
+
+```sh
+docker compose run --rm wpcli wp eval-file /scripts/import-avada-energy.php
+docker compose run --rm wpcli wp eval-file /scripts/postprocess-gardafrigo.php
+```
+
+Il primo comando importa il prebuilt Energy. Il secondo applica branding, homepage, menu e pagine solution Garda Frigor.

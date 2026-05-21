@@ -8,6 +8,7 @@ wp-content/index.php
 wp-content/plugins/*
 !wp-content/plugins/.gitkeep
 wp-content/themes/Avada/
+wp-content/themes/Avada 2/
 wp-content/themes/avada/
 wp-content/themes/index.php
 wp-content/themes/twentytwenty*/
