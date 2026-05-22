@@ -47,11 +47,42 @@ Tel. 0365 522645
 info@gardafrigor.it  
 P.IVA 01712420981
 
-## Prossimo passaggio
+## Import locale del 2026-05-22
 
-Dopo l'installazione del tema parent Avada:
+Script: `scripts/import-gardafrigor-live-pages.php`
 
-1. Registrare la licenza dal pannello Avada.
-2. Importare il prebuilt "Energy".
-3. Sostituire le pagine solution originali del demo con le quattro aree Garda Frigor.
-4. Importare o ricreare immagini, case history, news e form contatto.
+Sono state importate 80 pagine HTML dal sito live dentro WordPress locale. I contenuti sono stati inseriti in blocchi Avada/Fusion e ogni pagina conserva in meta `_gardafrigor_source_url` la URL sorgente, utile per impostare redirect e controlli.
+
+Layout applicati:
+
+- Servizi e sottoservizi: layout Avada "Energy / Solutions / Hydropower Plants".
+- Chi siamo: layout Avada "Energy / Company".
+- Contatti: layout Avada "Energy / Contact".
+- Case history e news: layout Avada "Energy / Case / A Secure Hydropower Supply Chain".
+
+Pagine principali importate:
+
+- Home: `/`
+- Chi siamo: `/chi-siamo/`
+- Servizi: `/servizi/`
+- Marchi: `/marchi/`
+- Case history: `/case-history/`
+- News: `/news/`
+- Contatti: `/contatti/`
+
+Rami servizi importati:
+
+- `/impianti-condizionamento/`
+- `/impianti-riscaldamento/`
+- `/impianti-trattamento-aria/`
+- `/impianti-refrigerazione/`
+- relative pagine casa, commerciali, manutenzione e sottoservizi.
+
+Pagine non importate come pagine singole e da decidere:
+
+- Paginazioni archivio news: `/news/pagina_P1.html`, `/news/pagina_P2.html`, `/news/pagina_P3.html`, `/news/pagina_P4.html`. Sono viste archivio duplicate: conviene redirect verso `/news/`.
+- Alias news duplicate: URL con `_P1_` dei primi articoli gia importati senza quel segmento. Conviene redirect verso la rispettiva news importata.
+- Alias refrigerazione: `/refrigerazione.html` duplica `/impianti-refrigerazione/`. Conviene redirect verso `/impianti-refrigerazione/`.
+- PDF privacy e cookie: `/privacy-policy.pdf`, `/privacy-cookies-policy.pdf`. Da decidere se caricarli in Media Library o ricrearli come pagine privacy.
+- PDF normativi collegati dalle news: file in `/pdfProdotti/`. Da decidere se importarli come allegati o lasciare link esterni temporanei.
+- Newsletter/area riservata: non e' emersa come pagina HTML raggiungibile nella scansione pubblica; da valutare come funzionalita separata.
