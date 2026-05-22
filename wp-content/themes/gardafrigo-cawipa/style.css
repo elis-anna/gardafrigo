@@ -147,35 +147,3 @@ body {
 .fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-1 {
   display: none !important;
 }
-
-.gf-manutenzione-fullscreen {
-  margin-left: calc(50% - 50vw) !important;
-  margin-right: calc(50% - 50vw) !important;
-  min-height: 100vh !important;
-  width: 100vw !important;
-}
-
-.gf-manutenzione-fullscreen > .fusion-builder-row,
-.gf-manutenzione-fullscreen .fusion-builder-row {
-  max-width: none !important;
-  width: 100% !important;
-}
-
-.gf-manutenzione-fullscreen .fusion-builder-column:first-child {
-  padding-left: clamp(24px, 6vw, 96px);
-}
-
-.gf-manutenzione-fullscreen .fusion-builder-column:last-child {
-  padding-right: 0;
-}
-
-@media (max-width: 900px) {
-  .gf-manutenzione-fullscreen {
-    min-height: auto !important;
-  }
-
-  .gf-manutenzione-fullscreen .fusion-builder-column:first-child {
-    padding-left: 24px;
-    padding-right: 24px;
-  }
-}
