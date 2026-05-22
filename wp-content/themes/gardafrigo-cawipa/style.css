@@ -80,6 +80,70 @@ body {
 
 .fusion-logo img,
 .fusion-mobile-logo img {
-  max-height: 82px;
+  max-height: 58px;
   width: auto;
+}
+
+.fusion-tb-header .fusion-imageframe img[alt="Garda Frigor"] {
+  max-height: 58px;
+  object-fit: contain;
+  width: auto;
+}
+
+.fusion-tb-header .fusion-builder-column:has(img[alt="Garda Frigor"]) {
+  flex: 1 1 auto !important;
+  max-width: none !important;
+  width: auto !important;
+}
+
+.fusion-tb-header .fusion-builder-column:has(img[alt="Garda Frigor"]) .fusion-column-wrapper {
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  width: 100%;
+}
+
+.fusion-tb-header .fusion-builder-column:has(img[alt="Garda Frigor"]) .awb-menu {
+  flex: 0 1 auto;
+  margin-left: auto !important;
+}
+
+.fusion-tb-header .fusion-builder-column:has(img[alt="Garda Frigor"]) .awb-menu__main-ul {
+  flex-wrap: nowrap !important;
+}
+
+.fusion-tb-header .fusion-builder-column:has(img[alt="Garda Frigor"]) + .fusion-builder-column {
+  display: none !important;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-0 {
+  flex: 1 1 100% !important;
+  max-width: 100% !important;
+  width: 100% !important;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-0 > .fusion-column-wrapper {
+  align-items: center !important;
+  display: flex !important;
+  flex-direction: row !important;
+  flex-wrap: nowrap !important;
+  width: 100% !important;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-0 .fusion-image-element {
+  flex: 0 0 auto;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-0 .awb-menu {
+  flex: 0 1 auto;
+  margin-left: auto !important;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-0 .awb-menu__main-ul {
+  flex-wrap: nowrap !important;
+}
+
+.fusion-tb-header .fusion-builder-row-1 .fusion-builder-column-1 {
+  display: none !important;
 }

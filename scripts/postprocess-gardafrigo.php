@@ -166,19 +166,19 @@ set_theme_mod('nav_menu_locations', [
 ]);
 
 $theme_uri = get_stylesheet_directory_uri();
-$logo_attachment = get_page_by_title('Garda Frigor logo', OBJECT, 'attachment');
+$logo_attachment = get_page_by_title('Garda Frigor logo transparent', OBJECT, 'attachment');
 
 if (!$logo_attachment) {
-    $logo_file = get_stylesheet_directory() . '/assets/garda-frigor-logo.jpg';
-    $upload = wp_upload_bits('garda-frigor-logo.jpg', null, file_get_contents($logo_file));
+    $logo_file = get_stylesheet_directory() . '/assets/garda-frigor-logo.png';
+    $upload = wp_upload_bits('garda-frigor-logo.png', null, file_get_contents($logo_file));
 
     if (!empty($upload['error'])) {
         WP_CLI::error('Logo upload failed: ' . $upload['error']);
     }
 
     $logo_id = wp_insert_attachment([
-        'post_mime_type' => 'image/jpeg',
-        'post_title' => 'Garda Frigor logo',
+        'post_mime_type' => 'image/png',
+        'post_title' => 'Garda Frigor logo transparent',
         'post_content' => '',
         'post_status' => 'inherit',
     ], $upload['file']);
@@ -188,6 +188,15 @@ if (!$logo_attachment) {
     update_post_meta($logo_id, '_wp_attachment_image_alt', 'Garda Frigor');
 } else {
     $logo_id = (int) $logo_attachment->ID;
+    $current_logo_file = get_attached_file($logo_id);
+    $logo_file = get_stylesheet_directory() . '/assets/garda-frigor-logo.png';
+
+    if ($current_logo_file && file_exists($logo_file)) {
+        copy($logo_file, $current_logo_file);
+        require_once ABSPATH . 'wp-admin/includes/image.php';
+        wp_update_attachment_metadata($logo_id, wp_generate_attachment_metadata($logo_id, $current_logo_file));
+        update_post_meta($logo_id, '_wp_attachment_image_alt', 'Garda Frigor');
+    }
 }
 
 $logo_url = wp_get_attachment_url($logo_id);
@@ -207,6 +216,8 @@ foreach (['logo', 'logo_retina', 'sticky_header_logo', 'sticky_header_logo_retin
 $header_logo_replacements = [
     'http://localhost:8080/wp-content/uploads/2022/05/avada-energy-logo-dark@2x.png' => $logo_url,
     'http://localhost:8080/wp-content/uploads/2022/05/avada-energy-mobile-logo.svg' => $logo_url,
+    'http://localhost:8080/wp-content/uploads/2026/05/garda-frigor-logo.jpg' => $logo_url,
+    'http://localhost:8080/wp-content/uploads/2026/05/garda-frigor-logo.png' => $logo_url,
     'https://avada.website/energy/wp-content/uploads/sites/164/2022/05/avada-energy-logo-light.png' => $logo_url,
     'https://avada.website/energy/wp-content/uploads/sites/164/2022/05/avada-energy-logo-light@2x.png' => $logo_url,
     'alt="Avada Energy"' => 'alt="Garda Frigor"',
@@ -216,8 +227,13 @@ $header_logo_replacements = [
     'image_id="733|full"' => 'image_id="' . $logo_id . '|full"',
     'image_id="860|full"' => 'image_id="' . $logo_id . '|full"',
     'image_id=""' => 'image_id="' . $logo_id . '|full"',
-    'max_width="166px"' => 'max_width="273px"',
-    'max_width="32px"' => 'max_width="136px"',
+    'max_width="273px"' => 'max_width="190px"',
+    'max_width="220px"' => 'max_width="190px"',
+    'max_width="166px"' => 'max_width="190px"',
+    'max_width="136px"' => 'max_width="112px"',
+    'max_width="32px"' => 'max_width="112px"',
+    'margin_right="64px"' => 'margin_right="28px"',
+    'margin_right="36px"' => 'margin_right="28px"',
 ];
 
 $header_sections = get_posts([
@@ -229,6 +245,7 @@ $header_sections = get_posts([
 
 foreach ($header_sections as $section) {
     $content = strtr($section->post_content, $header_logo_replacements);
+    $content = preg_replace('/image_id="\\d+\\|full"/', 'image_id="' . $logo_id . '|full"', $content);
     if ($content !== $section->post_content) {
         wp_update_post([
             'ID' => $section->ID,
